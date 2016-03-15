@@ -42,7 +42,7 @@ function _filter_hypher_juctrict($text, $filter) {
   $hy_ru = new phpHypher(drupal_get_path('module', 'hypher') . '/libs/hyph_ru_RU.conf');
 
   if($text != ""){
-    include('libs/simplehtmldom/simple_html_dom.php');
+    include_once('libs/simplehtmldom/simple_html_dom.php');
     $html = new simple_html_dom();
 
     $text = iconv('utf-8','windows-1251', $text);
