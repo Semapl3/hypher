@@ -26,9 +26,9 @@ function _filter_hypher($text, $filter) {
   $hy_ru = new phpHypher(drupal_get_path('module', 'hypher') . '/libs/hyph_ru_RU.conf');
 
   if($text != ""){
-    $text = iconv('utf-8','windows-1251', $text);
+    $text = iconv('utf-8','windows-1251//TRANSLIT', $text);
     $text = $hy_ru->hyphenate($text, 'utf-8');
-    $text = iconv('windows-1251','utf-8', $text);
+    $text = iconv('windows-1251','utf-8//TRANSLIT', $text);
   }
 
   return trim($text);
@@ -45,7 +45,7 @@ function _filter_hypher_juctrict($text, $filter) {
     include_once('libs/simplehtmldom/simple_html_dom.php');
     $html = new simple_html_dom();
 
-    $text = iconv('utf-8','windows-1251', $text);
+    $text = iconv('utf-8','windows-1251//TRANSLIT', $text);
     $html->load($text);
     $element = $html->find(".rtejustify");
 
@@ -54,7 +54,7 @@ function _filter_hypher_juctrict($text, $filter) {
     }
     $html->save();
 
-    $text = iconv('windows-1251','utf-8', $html->innertext);
+    $text = iconv('windows-1251','utf-8//TRANSLIT', $html->innertext);
   }
 
   return trim($text);
